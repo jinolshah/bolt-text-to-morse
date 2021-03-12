@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %} Text To Morse {% endblock title %}
+
+{% block body %}
+
+<div class="header">
+    <h1>
+        <a href="/">Text to Morse Code Coverter</a>
+    </h1>
+</div>
+
+
+<div class="cover">
+    <div class="content">
+        <form method="POST" action="" spellcheck="false" autocomplete="off">
+            {{ form.csrf_token }}
+            <div>
+                Select an output mode:
+                {% for subfield in form.choice %}
+                    <tr>
+                        <td>{{ subfield(required="required") }}</td>
+                        <td>{{ subfield.label() }}</td>
+                    </tr>
+                {% endfor %}
+            </div>
+            <div class="asktext">
+                <p>Character to be converted:&nbsp&nbsp&nbsp</p>
+                {{ form.character(class="charf") }}
+            </div>
+            <div class="error">
+                {% if form.character.errors %}
+                    {% for error in form.character.errors %}
+                        {{ error }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="deviceid">
+                <p>Your BOLT Device ID:&nbsp&nbsp</p>
+                {{ form.deviceID(class="deviceidf") }}
+            </div>
+            <div class="error">
+                {% if form.deviceID.errors %}
+                    {% for error in form.deviceID.errors %}
+                        {{ error }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="apikey">
+                <p>Your BOLT API key:&nbsp&nbsp</p>
+                {{ form.boltapikey(class="apikeyf") }}
+            </div>
+            <div class="error">
+                {% if form.boltapikey.errors %}
+                    {% for error in form.boltapikey.errors %}
+                        {{ error }}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="submission">
+                {{ form.submit(class="buttonf") }}
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock body %}
