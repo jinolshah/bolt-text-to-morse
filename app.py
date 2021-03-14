@@ -19,7 +19,9 @@ def base():
         api_key = str(form.boltapikey.data)
         device_id = str(form.deviceID.data)
         mybolt = Bolt(api_key, device_id)
-        hitter(codeout, opchoice, mybolt)
+        if codeout != "invalid":
+            hitter(codeout, opchoice, mybolt)
+
     return render_template("home.html", form = form)
 
 webbrowser.open_new("http://localhost:5000/")

@@ -25,9 +25,9 @@ def converter(form):
                 morse = morse + '|'
             if count != len(string) and letter != ' ' and string[count] != ' ':
                 morse = morse + ' '
-        return morse
+        return "invalid"
     except:
-        return 'Alien character in text'
+        return None
 
 # Buzzer is pin 0 and LED pin 1
 
